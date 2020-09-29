@@ -1,0 +1,40 @@
+
+<%for(var x=0;x< data.length;x++){%>
+    <div class='row br' style="margin:20px 0px">
+        <div class="container">
+            <div class='row rowInfo'>
+                <div class="col">
+                    <h1><%= data[x].name%></h1>
+                 </div>
+                 <div class="col-6">
+                </div>
+                <div class="col">
+                    <button onclick="y('<%= data[x].id %>')" class='btn btn-warning'>Add</button>
+                    <button value="<%= data[x].id %>" style="margin-left: 10px;" class='btn btn-warning delHos'>Delete Hospital</button>
+                </div>
+                
+                
+                
+            </div>
+        </div>
+        <div class="container cardInfo " da='<%=data[x].id%>'>
+            <div class='row ci<%=data[x].id%>'>
+            </div>
+        </div>
+
+    </div>
+<%}%>
+
+<script>
+    $(".cardInfo").each(function(){
+        var a = $(this).attr("da");
+        $.get("vents",{id:a},function(data){
+            $('.ci'+a).html(data);
+        });
+    });
+     $(".delHos").click(function(){
+        $.get("deleteHos/",{id:parseInt($(this).val())},function(data){
+            location.reload();
+        });
+     });    
+</script>

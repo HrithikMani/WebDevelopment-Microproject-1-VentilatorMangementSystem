@@ -1,0 +1,27 @@
+<% for(var i=0;i<arr.length;i++){ %>
+<% var a="danger"; %>
+
+<% 
+    var but="Free";
+    if(arr[i].occup == "false")
+    {
+        but = "Occupy";
+        a = "success";
+    }
+
+%>
+
+
+    <div class='card-group'>
+        <div class="card text-white bg-<%= a %> mb-3"  style="min-width:16rem;max-width:16rem;">
+            <div class='card-body'>
+                <h5 class='card-title text-center'><%= arr[i].ventNo%><h5>
+                <form class='form-inline'>
+                <button type='button' class='btn btn-warning del'  onclick="p('<%= arr[i]._id %>')">Delete</button>
+                <button  type='button' class='btn btn-warning free' id='ap<%= arr[i]._id %>' onclick="z('<%= arr[i]._id %>',<%= arr[i].occup %>)" style='margin-left:20px;'><%= but %></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<%}%>
